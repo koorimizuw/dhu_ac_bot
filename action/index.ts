@@ -2,7 +2,7 @@ import TelegramBot, { Message } from "node-telegram-bot-api";
 import { welcomMessage } from "./message";
 
 export const welcome = (bot: TelegramBot, id: number) => {
-  bot.sendMessage(id, welcomMessage, { parse_mode: "HTML" });
+  bot.sendMessage(id, welcomeMessage, { parse_mode: "HTML" });
 };
 
 export const ask = async (
