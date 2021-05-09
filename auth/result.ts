@@ -1,5 +1,5 @@
 export interface Result {
-  scuess: boolean;
+  success: boolean;
   message: string;
 }
 
@@ -10,22 +10,22 @@ Type '/updateinfo' to update your user info.
 `;
 
 export const USER_EXISTS: Result = {
-  scuess: false,
+  success: false,
   message: userExistsMessage,
 };
 
 export const BAD_FORMAT: Result = {
-  scuess: false,
+  success: false,
   message: "Dhu id or password format is bad.",
 };
 
 export const LOGIN_SUCCESS: Result = {
-  scuess: true,
+  success: true,
   message: "Login successful.",
 };
 
 export interface UpdateResult {
-  scuess: boolean;
+  success: boolean;
   message: string;
 }
 
@@ -36,11 +36,11 @@ Type '/login' to login your dhu account.
 `;
 
 export const USER_NOT_EXISTS: Result = {
-  scuess: false,
+  success: false,
   message: userNotExistsMessage,
 };
 
 export const AUTH_FAILED: Result = {
-  scuess: false,
+  success: false,
   message: "Authenticate failed.",
 };
