@@ -2,13 +2,13 @@ import TelegramBot from "node-telegram-bot-api";
 import { Attendance } from "@dhu/core";
 import formatAttendance from "./format";
 
-export default async (
+export default (
   bot: TelegramBot,
   chatID: number,
   msgId: number,
   data: Attendance[]
 ) => {
-  await bot.on("callback_query", async (message) => {
+  bot.on("callback_query", async (message) => {
     if (message.from.id == chatID && message.message?.message_id == msgId) {
       switch (message.data) {
         case "showAttendanceDetail":
