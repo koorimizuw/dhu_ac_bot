@@ -1,0 +1,5 @@
+*.js
+.env
+node_modules/
+prisma/migrations
+prisma/dhu.sqlite
