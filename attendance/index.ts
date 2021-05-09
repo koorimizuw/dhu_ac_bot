@@ -23,5 +23,5 @@ export const attendance = async (
     },
   });
 
-  await attendanceCallBackMessage(bot, id, message_id, res);
+ attendanceCallBackMessage(bot, id, message_id, res);
 };
