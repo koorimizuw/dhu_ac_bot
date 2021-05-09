@@ -1,9 +1,9 @@
 import { sleep } from "@dhu/core";
 import TelegramBot from "node-telegram-bot-api";
-import { welcomMessage } from "./message";
+import { welcomeMessage } from "./message";
 
 export const welcome = (bot: TelegramBot, id: number) => {
-  bot.sendMessage(id, welcomMessage, { parse_mode: "HTML" });
+  bot.sendMessage(id, welcomeMessage, { parse_mode: "HTML" });
 };
 
 export const ask = async (bot: TelegramBot, id: number, q: string) => {
