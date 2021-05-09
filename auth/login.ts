@@ -1,4 +1,3 @@
-import { login as dhuLogin } from "@dhu/core";
 import { getUserInfo, setUserInfo, updateUserInfo } from "../db";
 import { ask } from "../action";
 import TelegramBot from "node-telegram-bot-api";

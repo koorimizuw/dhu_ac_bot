@@ -2,11 +2,12 @@
 # yarn lockfile v1
 
 
-"@dhu/core@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@dhu/core/-/core-0.2.0.tgz#7ed9e5fd4f362e9f012bb2704ba952ff0a73fe02"
-  integrity sha512-KTQXA0x1+6ut/iQZtJEMI+PJ+cVGjROVwidoq7oLgTIsmYSGh6talNiygL5RClMuxNAsv/DNWPah/bkql11XEQ==
+"@dhu/core@^0.3.1":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@dhu/core/-/core-0.3.1.tgz#8101159a962ce131aa38cafe48bd6871c8e9b805"
+  integrity sha512-PRK711UoBkpKZGxy5lsGVJEO/eynjNgJ2MGLG25c4zkkPyM9phXBvP3AlerOPY7YP8NJ7b/7kgWH/Xc9+9BiaA==
   dependencies:
+    fs-extra "^10.0.0"
     json2csv "^5.0.6"
     playwright-chromium "^1.10.0"
 
@@ -369,6 +370,15 @@ form-data@~2.3.2:
     combined-stream "^1.0.6"
     mime-types "^2.1.12"
 
+fs-extra@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.0.tgz#9ff61b655dde53fb34a82df84bb214ce802e17c1"
+  integrity sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==
+  dependencies:
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -414,7 +424,7 @@ glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-graceful-fs@^4.2.4:
+graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
@@ -579,6 +589,15 @@ json2csv@^5.0.6:
     commander "^6.1.0"
     jsonparse "^1.3.1"
     lodash.get "^4.4.2"
+
+jsonfile@^6.0.1:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-6.1.0.tgz#bc55b2634793c679ec6403094eb13698a6ec0aae"
+  integrity sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==
+  dependencies:
+    universalify "^2.0.0"
+  optionalDependencies:
+    graceful-fs "^4.1.6"
 
 jsonparse@^1.3.1:
   version "1.3.1"
@@ -971,6 +990,11 @@ unbox-primitive@^1.0.0:
     has-bigints "^1.0.1"
     has-symbols "^1.0.2"
     which-boxed-primitive "^1.0.2"
+
+universalify@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
+  integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
 
 uri-js@^4.2.2:
   version "4.4.1"
