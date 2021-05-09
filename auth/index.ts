@@ -1,7 +1,7 @@
 import { getUserInfo } from "../db";
 import { login as dhuLogin, Browser } from "@dhu/core";
 
-export { login, update } from "./login";
+export { login, logout, update } from "./auth";
 
 export const auth = async (browser: Browser, id: number) => {
   const user = await getUserInfo(id);

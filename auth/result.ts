@@ -44,3 +44,8 @@ export const AUTH_FAILED: Result = {
   success: false,
   message: "Authenticate failed.",
 };
+
+export const LOGOUT_SUCCESS: Result = {
+  success: true,
+  message: "Logout successful.",
+};

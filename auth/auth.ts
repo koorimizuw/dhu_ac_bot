@@ -1,7 +1,18 @@
-import { getUserInfo, setUserInfo, updateUserInfo } from "../db";
+import {
+  getUserInfo,
+  setUserInfo,
+  updateUserInfo,
+  deleteUserInfo,
+} from "../db";
 import { ask } from "../action";
 import TelegramBot from "node-telegram-bot-api";
-import { Result, USER_EXISTS, BAD_FORMAT, LOGIN_SUCCESS } from "./result";
+import {
+  Result,
+  USER_EXISTS,
+  BAD_FORMAT,
+  LOGIN_SUCCESS,
+  LOGOUT_SUCCESS,
+} from "./result";
 import { USER_NOT_EXISTS } from "./result";
 
 export const login = async (bot: TelegramBot, id: number): Promise<Result> => {
@@ -25,6 +36,18 @@ export const login = async (bot: TelegramBot, id: number): Promise<Result> => {
   });
 
   return LOGIN_SUCCESS;
+};
+
+export const logout = async (bot: TelegramBot, id: number): Promise<Result> => {
+  const user = await getUserInfo(id);
+
+  if (!user) {
+    return USER_NOT_EXISTS;
+  }
+
+  await deleteUserInfo(user.uid);
+
+  return LOGOUT_SUCCESS;
 };
 
 export const update = async (bot: TelegramBot, id: number): Promise<Result> => {

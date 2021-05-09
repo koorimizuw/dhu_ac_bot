@@ -1,1 +1,6 @@
-export { getUserInfo, setUserInfo, updateUserInfo } from "./userinfo";
+export {
+  getUserInfo,
+  setUserInfo,
+  updateUserInfo,
+  deleteUserInfo,
+} from "./userinfo";

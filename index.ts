@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-import { login, update as updateInfo, auth } from "./auth";
+import { login, logout, update as updateInfo, auth } from "./auth";
 import { welcome } from "./action";
 import { grade } from "./grade";
 import { attendance } from "./attendance";
@@ -36,6 +36,10 @@ async function start() {
           break;
         }
         switch (text) {
+          case "/logout":
+            const logoutResult = await logout(bot, chat.id);
+            bot.sendMessage(chat.id, logoutResult.message);
+            break;
           case "/grade":
             grade(bot, chat.id, res.data);
             break;
