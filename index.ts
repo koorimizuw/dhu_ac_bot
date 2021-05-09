@@ -1,6 +1,7 @@
 import { login, update as updateInfo, auth } from "./auth";
 import { welcome } from "./action";
 import { grade } from "./grade";
+import { attendance } from "./attendance";
 import TelegramBot from "node-telegram-bot-api";
 
 require("dotenv").config();
@@ -30,6 +31,9 @@ const action = async (message: TelegramBot.Message) => {
       switch (text) {
         case "/grade":
           grade(bot, chat.id, res.data);
+          break;
+        case "/attendance":
+          attendance(bot, chat.id, res.data);
           break;
       }
   }
