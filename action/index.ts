@@ -1,9 +1,27 @@
 import TelegramBot, { Message } from "node-telegram-bot-api";
-import { welcomeMessage } from "./message";
+import { ChromiumBrowser } from "@dhu/core";
+import { welcome } from "./welcome";
+import { login, logout, update as updateInfo } from "../auth";
+import { grade } from "../grade";
+import { attendance } from "../attendance";
 
-export const welcome = (bot: TelegramBot, id: number) => {
-  bot.sendMessage(id, welcomeMessage, { parse_mode: "HTML" });
-};
+export type ActionFunction = (
+  bot: TelegramBot,
+  message: Message,
+  browser: ChromiumBrowser
+) => Promise<void>;
+type Actions = Map<string, ActionFunction>;
+
+export const actions: Actions = new Map(
+  Object.entries({
+    "/start": welcome,
+    "/login": login,
+    "/logout": logout,
+    "/updateinfo": updateInfo,
+    "/grade": grade,
+    "/attendance": attendance,
+  })
+);
 
 export const ask = async (
   bot: TelegramBot,

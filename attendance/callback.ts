@@ -1,15 +1,18 @@
-import TelegramBot from "node-telegram-bot-api";
-import { Attendance } from "@dhu/core";
-import formatAttendance from "./format";
+import TelegramBot, { Message } from "node-telegram-bot-api";
+import { Attendance, AttendanceRecord } from "@dhu/core";
+import { formatAttendance, formatAttendanceDetail } from "./format";
 
 export default (
   bot: TelegramBot,
-  chatID: number,
+  chatId: number,
   msgId: number,
   data: Attendance[]
 ) => {
   bot.on("callback_query", async (message) => {
-    if (message.from.id == chatID && message.message?.message_id == msgId) {
+    if (message.from.id == chatId && message.message?.message_id == msgId) {
+      if (!message.data) {
+        return;
+      }
       switch (message.data) {
         case "showAttendanceDetail":
           const inline: TelegramBot.InlineKeyboardMarkup = {
@@ -23,12 +26,16 @@ export default (
             }),
           };
           await bot.editMessageText(formatAttendance(data), {
-            chat_id: chatID,
+            chat_id: chatId,
             message_id: msgId,
             parse_mode: "HTML",
             reply_markup: inline,
           });
+          break;
         default:
+          bot.sendMessage(chatId, formatAttendanceDetail(data, message.data), {
+            parse_mode: "HTML",
+          });
           console.log(message);
       }
     }

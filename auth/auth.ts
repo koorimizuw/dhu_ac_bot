@@ -1,3 +1,4 @@
+import type { ActionFunction } from "../action";
 import {
   getUserInfo,
   setUserInfo,
@@ -5,9 +6,7 @@ import {
   deleteUserInfo,
 } from "../db";
 import { ask } from "../action";
-import TelegramBot from "node-telegram-bot-api";
 import {
-  Result,
   USER_EXISTS,
   BAD_FORMAT,
   LOGIN_SUCCESS,
@@ -15,60 +14,65 @@ import {
 } from "./result";
 import { USER_NOT_EXISTS } from "./result";
 
-export const login = async (bot: TelegramBot, id: number): Promise<Result> => {
-  const user = await getUserInfo(id);
+export const login: ActionFunction = async (bot, message) => {
+  const user = await getUserInfo(message.chat.id);
 
   if (user) {
-    return USER_EXISTS;
+    await bot.sendMessage(message.chat.id, USER_EXISTS.message);
+    return;
   }
 
-  const dhuId = await ask(bot, id, "Type your dhu id.");
-  const password = await ask(bot, id, "Type your dhu password.");
+  const dhuId = await ask(bot, message.chat.id, "Type your dhu id.");
+  const password = await ask(bot, message.chat.id, "Type your dhu password.");
 
   if (!dhuId || !password) {
-    return BAD_FORMAT;
+    await bot.sendMessage(message.chat.id, BAD_FORMAT.message);
+    return;
   }
 
   await setUserInfo({
-    chat_id: id,
+    chat_id: message.chat.id,
     dhu_id: dhuId,
     password: password,
   });
 
-  return LOGIN_SUCCESS;
+  await bot.sendMessage(message.chat.id, LOGIN_SUCCESS.message);
 };
 
-export const logout = async (bot: TelegramBot, id: number): Promise<Result> => {
-  const user = await getUserInfo(id);
+export const logout: ActionFunction = async (bot, message) => {
+  const user = await getUserInfo(message.chat.id);
 
   if (!user) {
-    return USER_NOT_EXISTS;
+    await bot.sendMessage(message.chat.id, USER_NOT_EXISTS.message);
+    return;
   }
 
   await deleteUserInfo(user.uid);
 
-  return LOGOUT_SUCCESS;
+  await bot.sendMessage(message.chat.id, LOGOUT_SUCCESS.message);
 };
 
-export const update = async (bot: TelegramBot, id: number): Promise<Result> => {
-  const user = await getUserInfo(id);
+export const update: ActionFunction = async (bot, message) => {
+  const user = await getUserInfo(message.chat.id);
 
   if (!user) {
-    return USER_NOT_EXISTS;
+    await bot.sendMessage(message.chat.id, USER_NOT_EXISTS.message);
+    return;
   }
 
-  const dhuId = await ask(bot, id, "Type your dhu id.");
-  const password = await ask(bot, id, "Type your dhu password.");
+  const dhuId = await ask(bot, message.chat.id, "Type your dhu id.");
+  const password = await ask(bot, message.chat.id, "Type your dhu password.");
 
   if (!dhuId || !password) {
-    return BAD_FORMAT;
+    await bot.sendMessage(message.chat.id, BAD_FORMAT.message);
+    return;
   }
 
-  await updateUserInfo(id, {
-    chat_id: id,
+  await updateUserInfo(message.chat.id, {
+    chat_id: message.chat.id,
     dhu_id: dhuId,
     password: password,
   });
 
-  return LOGIN_SUCCESS;
+  await bot.sendMessage(message.chat.id, LOGOUT_SUCCESS.message);
 };

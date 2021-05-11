@@ -1,19 +1,23 @@
+import type { ActionFunction } from "../action";
+import { auth } from "../auth";
 import { getAttendance } from "@dhu/core";
-import { LoginContext } from "@dhu/core/dist/login";
-import TelegramBot from "node-telegram-bot-api";
-import formatAttendance from "./format";
+import { formatAttendance } from "./format";
 import attendanceCallBackMessage from "./callback";
 
-export const attendance = async (
-  bot: TelegramBot,
-  id: number,
-  ctx: LoginContext
-) => {
-  const { message_id } = await bot.sendMessage(id, "Loading...");
+export const attendance: ActionFunction = async (bot, message, browser) => {
+  const ctx = await auth(browser, message.chat.id);
+  if (!ctx) {
+    bot.sendMessage(message.chat.id, "Authenticate failed.");
+    return;
+  }
+
+  const { message_id } = await bot.sendMessage(message.chat.id, "Loading...");
+
   const res = await getAttendance(ctx);
-  console.log(res);
+
+  console.log("%j", res);
   await bot.editMessageText(formatAttendance(res), {
-    chat_id: id,
+    chat_id: message.chat.id,
     message_id: message_id,
     parse_mode: "HTML",
     reply_markup: {
@@ -23,5 +27,5 @@ export const attendance = async (
     },
   });
 
- attendanceCallBackMessage(bot, id, message_id, res);
+  attendanceCallBackMessage(bot, message.chat.id, message_id, res);
 };
