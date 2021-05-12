@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@dhu/core@^0.3.1":
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/@dhu/core/-/core-0.3.1.tgz#8101159a962ce131aa38cafe48bd6871c8e9b805"
-  integrity sha512-PRK711UoBkpKZGxy5lsGVJEO/eynjNgJ2MGLG25c4zkkPyM9phXBvP3AlerOPY7YP8NJ7b/7kgWH/Xc9+9BiaA==
+"@dhu/core@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@dhu/core/-/core-0.3.3.tgz#492f07b226570f4e6ece635ed81a5bdbb139e3a0"
+  integrity sha512-InTXOPXgyN2VYSTo44ZUOtNgsSv/ZOCC7a0dNUPC94xXiV9qsnjRb9QN3FGhDhzhUpTIEvX/aSiK1Vwl3sbKBw==
   dependencies:
     fs-extra "^10.0.0"
     json2csv "^5.0.6"
@@ -239,9 +239,9 @@ depd@^1.1.1:
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
 
 dotenv@^9.0.0:
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-9.0.1.tgz#a889a28a3a515812dde1e7f8183ef5cdf3186b97"
-  integrity sha512-W8FNeNnnvJoYfgkFRKzp8kTgz0T2YY4TJ9xy1Ma0hSebPTK8iquRtpG12TUrSTX5zIN9D/wSLEEuI+Ad35tlyw==
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-9.0.2.tgz#dacc20160935a37dea6364aa1bef819fb9b6ab05"
+  integrity sha512-I9OvvrHp4pIARv4+x9iuewrWycX6CcZtoAu1XrzPxc5UygMJXJZYmBsynku8IkrJwgypE5DGNjDPmPRhDCptUg==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -728,9 +728,9 @@ performance-now@^2.1.0:
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 
 playwright-chromium@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/playwright-chromium/-/playwright-chromium-1.10.0.tgz#df0e65e42cdda66b599df38d062d9cd8c2dea09c"
-  integrity sha512-ry/60/YKGJfrnaS7j5C3+xmA2DAMv6pBE351FoTHe4Llq0WU92IL0rBYK3TkK3PzSHYtp1KdCRsRjDnJhImA3g==
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/playwright-chromium/-/playwright-chromium-1.11.0.tgz#fcd2a86baca011c758288f246a84304453c4ab42"
+  integrity sha512-CNV58vXoyItAXOuK9rgyESBmnwVMnQg12TBJEDq1IksJo9m2Gi1maReiMOOJAFduMhicvLGgRsQfdzm44KCcxA==
   dependencies:
     commander "^6.1.0"
     debug "^4.1.1"
@@ -745,6 +745,7 @@ playwright-chromium@^1.10.0:
     rimraf "^3.0.2"
     stack-utils "^2.0.3"
     ws "^7.3.1"
+    yazl "^2.5.1"
 
 pngjs@^5.0.0:
   version "5.0.0"
@@ -1050,3 +1051,10 @@ yauzl@^2.10.0:
   dependencies:
     buffer-crc32 "~0.2.3"
     fd-slicer "~1.1.0"
+
+yazl@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/yazl/-/yazl-2.5.1.tgz#a3d65d3dd659a5b0937850e8609f22fffa2b5c35"
+  integrity sha512-phENi2PLiHnHb6QBVot+dJnaAZ0xosj7p3fWl+znIjBDlnMI2PsZCJZ306BPTFOaHf5qdDEI8x5qFrSOBN5vrw==
+  dependencies:
+    buffer-crc32 "~0.2.3"

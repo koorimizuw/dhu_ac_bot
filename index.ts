@@ -1,7 +1,8 @@
 import dotenv from "dotenv";
 dotenv.config();
 import TelegramBot from "node-telegram-bot-api";
-import { chromium } from "@dhu/core";
+import middleware from "./middleware";
+import { chromium, LoginContext } from "@dhu/core";
 import { actions } from "./action";
 
 const token = process.env.TOKEN;
@@ -12,9 +13,11 @@ async function start() {
   // start background browser
   const browser = await chromium.launch();
 
-  bot.on("message", (message) => {
+  bot.on("message", async (message) => {
     if (!message.text) return;
-    actions.get(message.text)?.(bot, message, browser);
+    const res = await middleware(bot, message, browser);
+    if (res.error) return;
+    actions.get(message.text)?.(bot, message, res.ctx as LoginContext);
   });
 }
 

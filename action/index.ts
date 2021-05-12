@@ -1,5 +1,5 @@
 import TelegramBot, { Message } from "node-telegram-bot-api";
-import { ChromiumBrowser } from "@dhu/core";
+import { LoginContext } from "@dhu/core";
 import { welcome } from "./welcome";
 import { login, logout, update as updateInfo } from "../auth";
 import { grade } from "../grade";
@@ -8,7 +8,7 @@ import { attendance } from "../attendance";
 export type ActionFunction = (
   bot: TelegramBot,
   message: Message,
-  browser: ChromiumBrowser
+  ctx: LoginContext
 ) => Promise<void>;
 type Actions = Map<string, ActionFunction>;
 

@@ -1,10 +1,9 @@
 import { getUserInfo } from "../db";
-import { login as dhuLogin, Browser } from "@dhu/core";
+import { login as dhuLogin, Browser, LoginContext } from "@dhu/core";
 
 export { login, logout, update } from "./auth";
 
-type Await<T> = T extends PromiseLike<infer U> ? U : T;
-type LoginContext = Await<ReturnType<typeof dhuLogin>>["data"];
+export const authActions = ["/grade", "/attendance"];
 
 export const auth = async (
   browser: Browser,

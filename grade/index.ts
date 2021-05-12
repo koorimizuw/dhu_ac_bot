@@ -3,13 +3,7 @@ import { auth } from "../auth";
 import { getGPA } from "@dhu/core";
 import formatGPA from "./format";
 
-export const grade: ActionFunction = async (bot, message, browser) => {
-  const ctx = await auth(browser, message.chat.id);
-  if (!ctx) {
-    bot.sendMessage(message.chat.id, "Authenticate failed.");
-    return;
-  }
-
+export const grade: ActionFunction = async (bot, message, ctx) => {
   const { message_id } = await bot.sendMessage(message.chat.id, "Loading...");
 
   const res = await getGPA(ctx);
