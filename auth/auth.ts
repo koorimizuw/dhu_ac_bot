@@ -14,7 +14,7 @@ import {
 } from "./result";
 import { USER_NOT_EXISTS } from "./result";
 
-export const login: ActionFunction = async (bot, message) => {
+export const login: ActionFunction = async (bot, message, ctx) => {
   const user = await getUserInfo(message.chat.id);
 
   if (user) {

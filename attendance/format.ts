@@ -1,10 +1,11 @@
 import { Attendance } from "@dhu/core";
 
-export const formatAttendance = (gpa: Attendance[]) => {
-  let str = "";
-  for (let i of gpa) {
-    str += "<b>" + i.title + "</b>: ";
-    str += "<b>" + i.rate + "</b>";
+export const formatAttendance = (atte: Attendance[]) => {
+  let str = "<b>Your attendance data</b>: \n\n";
+  for (let i in atte) {
+    str += `<b>Subject ${i + 1}</b>: \n`
+    str += "<b>" + atte[i].title.split(/[【\[]/)[0].trim() + "</b>: ";
+    str += "<b>" + atte[i].rate + "</b>";
     str += "\n";
   }
   return str;

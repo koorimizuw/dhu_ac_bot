@@ -1,10 +1,9 @@
 import { GPA } from "@dhu/core";
 
-export default (gpa: GPA[]) => {
-  let str = "";
+export const formatGPA = (gpa: GPA[]) => {
+  let str = "<b>Your GPA:</b> \n\n";
   for (let i of gpa) {
-    str += "<b>" + i.semester + "</b>: ";
-    str += "<b>" + i.gpa + "</b>";
+    str += `${i.semester}: ${i.gpa}`
     str += "\n";
   }
   return str;

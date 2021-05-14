@@ -1,18 +1,19 @@
-import { InlineKeyboardMarkup } from "node-telegram-bot-api";
-import type { ActionFunction } from "../action";
-import { auth } from "../auth";
+import { CallbackQuery } from "node-telegram-bot-api";
 import { getAttendance } from "@dhu/core";
+import type { ActionFunction } from "../action";
+import { encodeCallbackData } from "../callback";
 import { formatAttendance } from "./format";
-import callbackAction from "./callback";
-
-const inlineKeyboardAction: InlineKeyboardMarkup["inline_keyboard"] = [
-  [{ text: "詳細を見る", callback_data: "showAttendanceDetail" }],
-];
+import { callbackAction } from "./callback";
 
 export const attendance: ActionFunction = async (bot, message, ctx) => {
+  if (!ctx) return;
   const { message_id } = await bot.sendMessage(message.chat.id, "Loading...");
 
   const res = await getAttendance(ctx);
+  const callbackData = encodeCallbackData({
+    name: "showAtteDetail",
+    data: {},
+  });
 
   // send message
   await bot.editMessageText(formatAttendance(res), {
@@ -20,17 +21,29 @@ export const attendance: ActionFunction = async (bot, message, ctx) => {
     message_id: message_id,
     parse_mode: "HTML",
     reply_markup: {
-      inline_keyboard: inlineKeyboardAction,
+      inline_keyboard: [
+        [
+          {
+            text: "詳細を見る",
+            callback_data: callbackData,
+          },
+        ],
+      ],
     },
   });
 
-  // callback message
-  bot.on("callback_query", async (callbackQuery) => {
+  // receive callback
+  const handler = async (query: CallbackQuery) => {
     if (
-      callbackQuery.from.id == message.chat.id &&
-      callbackQuery.message?.message_id == message_id
+      query.from.id == message.chat.id &&
+      query.message?.message_id == message_id
     ) {
-      callbackAction(bot, callbackQuery, res);
+      callbackAction(bot, query, res);
     }
-  });
+    setTimeout(() => {
+      bot.removeListener("callback_query", handler)
+    }, 300 * 1000)
+  }
+
+  bot.on("callback_query", handler);
 };

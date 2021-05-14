@@ -1,9 +1,9 @@
 import type { ActionFunction } from "../action";
-import { auth } from "../auth";
 import { getGPA } from "@dhu/core";
-import formatGPA from "./format";
+import { formatGPA } from "./format";
 
 export const grade: ActionFunction = async (bot, message, ctx) => {
+  if (!ctx) return;
   const { message_id } = await bot.sendMessage(message.chat.id, "Loading...");
 
   const res = await getGPA(ctx);

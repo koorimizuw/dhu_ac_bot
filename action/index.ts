@@ -8,9 +8,13 @@ import { attendance } from "../attendance";
 export type ActionFunction = (
   bot: TelegramBot,
   message: Message,
-  ctx: LoginContext
+  ctx: LoginContext | null
 ) => Promise<void>;
 type Actions = Map<string, ActionFunction>;
+
+export const actions2 = {
+  "123": login
+}
 
 export const actions: Actions = new Map(
   Object.entries({
