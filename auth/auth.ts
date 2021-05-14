@@ -5,7 +5,7 @@ import {
   updateUserInfo,
   deleteUserInfo,
 } from "../db";
-import { ask } from "../action";
+import { ask } from "../utils";
 import {
   USER_EXISTS,
   BAD_FORMAT,

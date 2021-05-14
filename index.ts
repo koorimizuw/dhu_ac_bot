@@ -5,6 +5,8 @@ import { getContext } from "./middleware";
 import { chromium } from "@dhu/core";
 import { actions } from "./action";
 
+console.log(actions)
+
 const token = process.env.TOKEN;
 
 async function start() {
