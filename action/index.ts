@@ -4,6 +4,9 @@ import { welcome } from "./welcome";
 import { login, logout, update as updateInfo } from "../auth";
 import { grade } from "../grade";
 import { attendance } from "../attendance";
+import { info } from "../info";
+import { schedule } from "../schedule";
+import { fs } from "../fs";
 
 export type ActionFunction = (
   bot: TelegramBot,
@@ -24,5 +27,8 @@ export const actions: Actions = new Map(
     "/updateinfo": updateInfo,
     "/grade": grade,
     "/attendance": attendance,
+    "/info": info,
+    "/schedule": schedule,
+    "/fs": fs
   })
 );

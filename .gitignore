@@ -1,5 +1,6 @@
 *.js
 *.log
+*.csv
 .env
 node_modules/
 prisma/migrations

@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@dhu/core@^0.3.3":
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/@dhu/core/-/core-0.3.3.tgz#492f07b226570f4e6ece635ed81a5bdbb139e3a0"
-  integrity sha512-InTXOPXgyN2VYSTo44ZUOtNgsSv/ZOCC7a0dNUPC94xXiV9qsnjRb9QN3FGhDhzhUpTIEvX/aSiK1Vwl3sbKBw==
+"@dhu/core@^0.3.6":
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/@dhu/core/-/core-0.3.6.tgz#4df42f6262ccd5459d27a03f56a9b666916413ce"
+  integrity sha512-z4RupWRlMTFZ0Nv/7+yJb4Ki5QpkTIpJ0pgapGKWBwwyxqrlDbal5Z3PdG/DaORPrFWS/ZBzxLnzFPGk2quvYg==
   dependencies:
     fs-extra "^10.0.0"
     json2csv "^5.0.6"

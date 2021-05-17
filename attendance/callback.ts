@@ -16,7 +16,7 @@ export const callbackAction = async (bot: TelegramBot, query: CallbackQuery, dat
           inline_keyboard: data.map((item) => {
             return [
               {
-                text: item.title,
+                text: item.title.split(/[【\[]/)[0].trim(),
                 callback_data: encodeCallbackData({
                   name: "showAtteSubject",
                   data: { code: item.code },

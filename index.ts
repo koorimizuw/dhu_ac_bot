@@ -5,8 +5,6 @@ import { getContext } from "./middleware";
 import { chromium } from "@dhu/core";
 import { actions } from "./action";
 
-console.log(actions)
-
 const token = process.env.TOKEN;
 
 async function start() {
@@ -18,7 +16,8 @@ async function start() {
   // action
   bot.on("message", async (message) => {
     const ctx = await getContext(bot, message.chat.id, browser);
-    actions.get(message.text as string)?.(bot, message, ctx);
+    await actions.get(message.text as string)?.(bot, message, ctx);
+    await ctx?.ctx.close()
   });
 }
 
