@@ -1,18 +1,17 @@
 import { CallbackQuery } from "node-telegram-bot-api";
-import { getInfo, getInfoItemByIndex, sleep } from "@dhu/core";
+import { getInfo, GetInfoOptions } from "@dhu/core";
 import type { ActionFunction } from "../action";
 import { encodeCallbackData } from "../callback";
 import { formatInfo } from "./format";
-//import { callbackAction } from "./callback"
+import { callbackAction } from "./callback"
 
 export const info: ActionFunction = async (bot, message, ctx) => {
   if (!ctx) return;
   const { message_id } = await bot.sendMessage(message.chat.id, "Loading...");
 
-  const options = {
-    all: false,
-    attachments: false,
-    dir: "",
+  const options: GetInfoOptions = {
+    listAll: false,
+    attachments: { download: false },
   };
 
   const callbackData = encodeCallbackData({
@@ -22,9 +21,6 @@ export const info: ActionFunction = async (bot, message, ctx) => {
 
   const res = await getInfo(ctx, options);
   console.log(res)
-
-  const res2 = await getInfoItemByIndex(ctx.page, 0, { content: true, dir: "" })
-  console.log(res2)
 
   await bot.editMessageText(formatInfo(res), {
     chat_id: message.chat.id,
@@ -42,5 +38,18 @@ export const info: ActionFunction = async (bot, message, ctx) => {
     },
   });
 
+  // receive callback
+  const handler = async (query: CallbackQuery) => {
+    if (
+      query.from.id == message.chat.id &&
+      query.message?.message_id == message_id
+    ) {
+      callbackAction(bot, query, res, ctx);
+    }
+    setTimeout(() => {
+      bot.removeListener("callback_query", handler)
+    }, 300 * 1000)
+  }
 
+  bot.on("callback_query", handler);
 };
