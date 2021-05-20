@@ -1,5 +1,5 @@
 import TelegramBot, { CallbackQuery } from "node-telegram-bot-api";
-import { FS, FS_QUESTIONS, fillFS, LoginContext } from "@dhu/core";
+import { FS, FS_QUESTIONS, FSFormAnswers, fillFS, LoginContext } from "@dhu/core";
 import { encodeCallbackData, decodeCallbackData } from "../callback"
 import { ask, choose } from "../utils";
 
@@ -25,11 +25,11 @@ export const callbackAction = async (bot: TelegramBot, query: CallbackQuery, dat
       break;
     case "fillFSItem":
       bot.sendMessage(query.from.id, "記入しない場合は数字の `0` を入力してください")
-      const fsAnswer: any = []
+      const fsAnswer: FSFormAnswers[number][] = []
       for (let item of FS_QUESTIONS) {
         switch (item.type) {
           case "select":
-            const as = await choose(bot, query.from.id, item.text, item.options.map(opt => opt.label))
+            const as = await choose(bot, query.from.id, item.text, [...item.options].map(opt => opt.label))
             await bot.sendMessage(query.from.id, `あなたの選択は: <b>${item.options[Number(as)].label}</b>`, { parse_mode: "HTML" })
             fsAnswer.push(item.options[Number(as)].value)
             break;
@@ -39,7 +39,7 @@ export const callbackAction = async (bot: TelegramBot, query: CallbackQuery, dat
             break;
         }
       }
-      const res = await fillFS(ctx.page, action.data.index, fsAnswer)
+      const res = await fillFS(ctx.page, action.data.index, fsAnswer as FSFormAnswers)
       bot.sendMessage(query.from.id, "完了しました。")
   }
 };

@@ -1,5 +1,5 @@
 import { CallbackQuery } from "node-telegram-bot-api";
-import { getInfo, GetInfoOptions } from "@dhu/core";
+import { getInfo, GetInfoOptions, sleep } from "@dhu/core";
 import type { ActionFunction } from "../action";
 import { encodeCallbackData } from "../callback";
 import { formatInfo } from "./format";
@@ -11,7 +11,7 @@ export const info: ActionFunction = async (bot, message, ctx) => {
 
   const options: GetInfoOptions = {
     listAll: false,
-    attachments: { download: false },
+    skipRead: false,
   };
 
   const callbackData = encodeCallbackData({
@@ -52,4 +52,5 @@ export const info: ActionFunction = async (bot, message, ctx) => {
   }
 
   bot.on("callback_query", handler);
+  await sleep(300 * 1000)
 };
