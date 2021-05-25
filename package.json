@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@dhu/core": "^0.3.10",
+    "@dhu/core": "^0.3.12",
     "@prisma/client": "2.22.1",
     "@types/node-telegram-bot-api": "^0.51.1",
     "@types/sqlite3": "^3.1.7",
